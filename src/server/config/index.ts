@@ -2,7 +2,8 @@ import {join} from 'path';
 import {extend} from "lodash"; // 这里就是当使用什么函数的时候，才引用
 let config = {
     "viewDir": join(__dirname,"..","views"),
-    "staticDir":join(__dirname,"..","assets")
+    "staticDir":join(__dirname,"..","assets"),
+    "caseModel":''
 }
 
 if(process.env.NODE_ENV == 'development'){

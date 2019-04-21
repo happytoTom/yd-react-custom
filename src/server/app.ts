@@ -32,7 +32,7 @@ server
   })
   .setErrorConfig(app => {
     //容错
-    errorHandler.error(app);
+    errorHandler.error(app,log4js);
     
   });
 
