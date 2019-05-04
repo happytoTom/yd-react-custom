@@ -4,6 +4,7 @@ const babel = require('gulp-babel');
 const rollup = require('gulp-rollup');
 const env = require('gulp-env');
 const replace = require('rollup-plugin-replace');
+const sourcemaps = require('gulp-sourcemaps');
 var destination = './dist/server/';
 const tsProj = ts.createProject('./src/server/tsconfig.json');
 
@@ -11,8 +12,12 @@ function builddev() {
   return gulp.watch('./src/server/**/*.ts', { ignoreInitial: false }, () => {
     gulp
       .src('./src/server/**/*.ts')
+      .pipe(sourcemaps.init())
       .pipe(tsProj())
-      .pipe(babel())
+      .pipe(babel({
+        presets: ['@babel/preset-env']
+      }))
+      .pipe(sourcemaps.write('.'))
       .pipe(gulp.dest(destination));
   });
 }
